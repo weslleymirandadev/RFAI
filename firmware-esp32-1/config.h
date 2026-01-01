@@ -10,6 +10,10 @@ const char* password = "PASSWORD";
 
 #define BUTTON_PIN 21
 
+// nRF24L01 pins
+#define RF_CE_PIN 4
+#define RF_CSN_PIN 5
+
 #define SAMPLE_RATE 16000
 #define CHANNELS 1
 #define BUFFER_SAMPLES 512
@@ -25,4 +29,3 @@ const char* password = "PASSWORD";
 #define DC_FILTER_ALPHA 99
 
 #endif
-

@@ -10,6 +10,7 @@
 #include "i2s_handler.h"
 #include "recorder.h"
 #include "web_server.h"
+#include "rf_handler.h"
 
 WebServer server(80);
 
@@ -30,6 +31,8 @@ void setup() {
   initI2S();
   delay(100);
   calibrateDCOffset();
+
+  initRF();
 
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) delay(500);

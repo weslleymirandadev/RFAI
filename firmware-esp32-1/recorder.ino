@@ -1,4 +1,5 @@
 #include "recorder.h"
+#include "rf_handler.h"
 
 bool recording = false;
 unsigned long lastVoiceTime = 0;
@@ -64,6 +65,9 @@ void stopRecording() {
   recording = false;
   delay(50);
   Serial.println("Gravacao finalizada e arquivo fechado");
+  
+  // Enviar dados via RF quando gravação terminar
+  sendAudioDataViaRF();
 }
 
 bool isRecording() {
@@ -116,4 +120,3 @@ void setVADMode(bool enabled) {
 bool isVADMode() {
   return vadMode;
 }
-
