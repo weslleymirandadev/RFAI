@@ -1,7 +1,7 @@
-# INMP441
+# RFAI
 
-Boilerplate code for using and serving audio from SPIFFS using an INMP441 I2S microphone on a web server.
+Project that combines two ESP32 for Gemini's audio to text API and RF + OLED display for answer
 
 # How to use
 
-The main file is [INMP441.ino](https://github.com/weslleymirandadev/INMP441-base/blob/main/INMP441.ino). You can set your own configuration at [config.h](https://github.com/weslleymirandadev/INMP441-base/blob/main/config.h).
+The main file is [RFAI.ino](https://github.com/weslleymirandadev/RFAI/blob/main/RFAI.ino). You can set your own configuration at [config.h](https://github.com/weslleymirandadev/RFAI/blob/main/config.h).
