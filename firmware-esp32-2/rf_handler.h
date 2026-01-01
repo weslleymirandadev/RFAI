@@ -5,7 +5,7 @@
 #include "config.h"
 
 void initRF();
-void receiveDataViaRF();
+bool receiveDataViaRF();
 
 #endif
 

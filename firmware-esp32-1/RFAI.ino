@@ -1,18 +1,13 @@
 #include <Arduino.h>
 #include "SPIFFS.h"
 #include "driver/i2s.h"
-#include <WiFi.h>
-#include <WebServer.h>
 
 #include "config.h"
 #include "wav_handler.h"
 #include "audio_processor.h"
 #include "i2s_handler.h"
 #include "recorder.h"
-#include "web_server.h"
 #include "rf_handler.h"
-
-WebServer server(80);
 
 int32_t rawI2sBuffer[BUFFER_SAMPLES];
 int16_t processedBuffer[BUFFER_SAMPLES];
@@ -34,10 +29,6 @@ void setup() {
 
   initRF();
 
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) delay(500);
-
-  Serial.println(WiFi.localIP());
   Serial.println("Sistema de gravacao VAD inicializado");
   Serial.printf("Threshold: %d\n", VAD_THRESHOLD);
   Serial.printf("Audio Gain: %dx\n", AUDIO_GAIN);
@@ -47,8 +38,6 @@ void setup() {
     Serial.println("Debug VAD ativado - valores RMS serao exibidos");
   }
   Serial.println("Dica: Se audio estiver estourado, diminua AUDIO_GAIN. Se estiver baixo, aumente.");
-
-  initWebServer(&server);
 }
 
 void loop() {
@@ -58,7 +47,6 @@ void loop() {
   int samplesRead = bytesRead / sizeof(int32_t);
   
   if (samplesRead == 0) {
-    server.handleClient();
     return;
   }
 
@@ -115,6 +103,4 @@ void loop() {
   if (!isRecording()) {
     digitalWrite(2, LOW);
   }
-
-  server.handleClient();
 }
